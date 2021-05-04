@@ -20,7 +20,7 @@ public class AudioToggle : MonoBehaviour
         float musicVolume = PlayerPrefs.GetFloat("musicvolume");
 
         AudioManager.instance.SetVolume("ClickEdited", musicVolume);
-        AudioManager.instance.Play("ClickEdited", musicVolume); //how do I set this value as the value from the slider manager? This is where the SFX is called from. 
+        AudioManager.instance.Play("ClickEdited", musicVolume); 
     }
 
     public void PlayBackSound()
