@@ -18,14 +18,15 @@ public class playerController : MonoBehaviour
     void Update()
     {
         
-        movement.x = Input.GetAxisRaw("Horizontal");
+        movement.x = Input.GetAxisRaw("Horizontal"); //gets axis as vector2 
         movement.y = Input.GetAxisRaw("Vertical");
 
         anim.SetFloat("Horizontal", movement.x);
-        anim.SetFloat("Vertical", movement.y);
+        anim.SetFloat("Vertical", movement.y);  //sets animation parameters
         anim.SetFloat("Speed", movement.sqrMagnitude);
 
-        if (Input.GetAxisRaw("Horizontal") == 1 || Input.GetAxisRaw("Horizontal") == -1 || Input.GetAxisRaw("Vertical") == 1 || Input.GetAxisRaw("Vertical") == -1)
+        if (Input.GetAxisRaw("Horizontal") == 1 || Input.GetAxisRaw("Horizontal") == -1 || Input.GetAxisRaw("Vertical") == 1 || Input.GetAxisRaw("Vertical") == -1) 
+        //If statement to set the correct idle animation (idle right, left, down) based off last direction.
         {
             anim.SetFloat("LastHorizontal", Input.GetAxisRaw("Horizontal"));
             anim.SetFloat("LastVertical", Input.GetAxisRaw("Vertical"));
@@ -35,7 +36,17 @@ public class playerController : MonoBehaviour
     
     void FixedUpdate()
     {
-        rb.MovePosition(rb.position + movement.normalized * moveSpeed * Time.fixedDeltaTime);
+
+        if (Mathf.Abs(movement.x) > Mathf.Abs(movement.y)) //if statement disables diagonal movement
+        {
+            movement.y = 0;
+        }
+        else
+        {
+            movement.x = 0;
+        }
+
+        rb.MovePosition(rb.position + movement.normalized * moveSpeed * Time.fixedDeltaTime); //applies movement to player
     }
 
 }
