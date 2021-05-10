@@ -7,6 +7,7 @@ public class playerController : MonoBehaviour
     public float moveSpeed = 5f;
     private float startTime, endTime;
     private bool isPickingUpItem = false;
+    private int lastDirection;
     public Rigidbody2D rb;
     public Animator anim;
     Vector2 movement; 
@@ -29,7 +30,6 @@ public class playerController : MonoBehaviour
         anim.SetFloat("Horizontal", movement.x);
         anim.SetFloat("Vertical", movement.y);  //sets animation parameters
         anim.SetFloat("Speed", movement.sqrMagnitude);
-
     }  
 
     void CallAnimManagers()
@@ -52,12 +52,22 @@ public class playerController : MonoBehaviour
     void ResourceGatherManager()
     {
 
-        if (Input.GetKeyDown(KeyCode.E) && movement.x == -1)
+
+        if (movement.x > 0) //Detects last direction
+        {
+            lastDirection = 1;
+        }
+        if (movement.x < 0)
+        {
+            lastDirection = -1;
+        }
+
+        if (Input.GetKeyDown(KeyCode.E) && lastDirection == -1)
         {
             anim.Play("pickupLeft"); //play anim
             isPickingUpItem = true; //freeze movement 
         }
-            if (Input.GetKeyDown(KeyCode.E) && movement.x == 1) 
+            if (Input.GetKeyDown(KeyCode.E) && lastDirection == 1) 
             {
                 anim.Play("pickupRight"); 
                 isPickingUpItem = true;

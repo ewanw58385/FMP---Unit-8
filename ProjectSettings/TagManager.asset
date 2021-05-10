@@ -47,3 +47,6 @@ TagManager:
   - name: 'Enviroment '
     uniqueID: 1803341179
     locked: 0
+  - name: Resources
+    uniqueID: 410126697
+    locked: 0
