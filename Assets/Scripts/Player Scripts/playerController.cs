@@ -6,7 +6,8 @@ public class playerController : MonoBehaviour
 {
     public float moveSpeed = 5f;
     private float startTime, endTime;
-    private bool isPickingUpItem = false;
+    public bool isPickingUpItem = false;
+    public bool playCoinAnim = false;
     private int lastDirection;
     public Rigidbody2D rb;
     public Animator anim;
@@ -24,8 +25,6 @@ public class playerController : MonoBehaviour
 
         movement.x = Input.GetAxisRaw("Horizontal"); //gets axis as vector2 
         movement.y = Input.GetAxisRaw("Vertical");
-
-        Debug.Log(movement.x);
 
         anim.SetFloat("Horizontal", movement.x);
         anim.SetFloat("Vertical", movement.y);  //sets animation parameters
@@ -51,8 +50,6 @@ public class playerController : MonoBehaviour
 
     void ResourceGatherManager()
     {
-
-
         if (movement.x > 0) //Detects last direction
         {
             lastDirection = 1;
@@ -65,17 +62,23 @@ public class playerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E) && lastDirection == -1)
         {
             anim.Play("pickupLeft"); //play anim
-            isPickingUpItem = true; //freeze movement 
+            isPickingUpItem = true; //freeze movement
+            playCoinAnim = true;
         }
             if (Input.GetKeyDown(KeyCode.E) && lastDirection == 1) 
             {
                 anim.Play("pickupRight"); 
                 isPickingUpItem = true;
-            }
+                playCoinAnim = true;
+        }
 
         if ((anim.GetCurrentAnimatorStateInfo(0).IsName("pickupLeft") || anim.GetCurrentAnimatorStateInfo(0).IsName("pickupRight")) && anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.8f)
         {
             isPickingUpItem = false;
+        }
+        if ((anim.GetCurrentAnimatorStateInfo(0).IsName("pickupLeft") || anim.GetCurrentAnimatorStateInfo(0).IsName("pickupRight")) && anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.05f) //stop instansiating prefabs after 0.05f. 
+        {
+            playCoinAnim = false;
         }
     }
     
