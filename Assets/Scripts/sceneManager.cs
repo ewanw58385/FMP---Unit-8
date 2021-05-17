@@ -6,9 +6,9 @@ using UnityEngine.SceneManagement;
 public class sceneManager : MonoBehaviour
 {
 
-    public void loadScene (string GameScene)
+    public void loadScene (string WorldScene)
     {
-        SceneManager.LoadScene(GameScene);
+        SceneManager.LoadScene(WorldScene);
     }
             
         public void quitGame()

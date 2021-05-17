@@ -63,13 +63,15 @@ public class playerController : MonoBehaviour
         {
             anim.Play("pickupLeft"); //play anim
             isPickingUpItem = true; //freeze movement
+
             playCoinAnim = true;
         }
             if (Input.GetKeyDown(KeyCode.E) && lastDirection == 1) 
             {
                 anim.Play("pickupRight"); 
                 isPickingUpItem = true;
-                playCoinAnim = true;
+
+                playCoinAnim = true;    
         }
 
         if ((anim.GetCurrentAnimatorStateInfo(0).IsName("pickupLeft") || anim.GetCurrentAnimatorStateInfo(0).IsName("pickupRight")) && anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.8f)
@@ -81,6 +83,11 @@ public class playerController : MonoBehaviour
         {
             playCoinAnim = false;
         }
+    }
+
+    void AnimationTimingMethod()
+    {
+
     }
     
     void FixedUpdate()
