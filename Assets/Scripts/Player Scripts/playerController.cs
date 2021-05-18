@@ -50,7 +50,8 @@ public class playerController : MonoBehaviour
 
     void ResourceGatherManager()
     {
-        if (movement.x > 0) //Detects last direction
+   
+        if (movement.x > 0) //Detects last direction for pickup anim
         {
             lastDirection = 1;
         }
@@ -66,28 +67,22 @@ public class playerController : MonoBehaviour
 
             playCoinAnim = true;
         }
-            if (Input.GetKeyDown(KeyCode.E) && lastDirection == 1) 
-            {
-                anim.Play("pickupRight"); 
-                isPickingUpItem = true;
+        if (Input.GetKeyDown(KeyCode.E) && lastDirection == 1)
+        {
+            anim.Play("pickupRight");
+            isPickingUpItem = true;
 
-                playCoinAnim = true;    
+            playCoinAnim = true;
         }
 
         if ((anim.GetCurrentAnimatorStateInfo(0).IsName("pickupLeft") || anim.GetCurrentAnimatorStateInfo(0).IsName("pickupRight")) && anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.8f)
         {
             isPickingUpItem = false;
-
         }
         if ((anim.GetCurrentAnimatorStateInfo(0).IsName("pickupLeft") || anim.GetCurrentAnimatorStateInfo(0).IsName("pickupRight")) && anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.05f) //stop instansiating prefabs after 0.05f. 
         {
             playCoinAnim = false;
         }
-    }
-
-    void AnimationTimingMethod()
-    {
-
     }
     
     void FixedUpdate()

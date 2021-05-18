@@ -6,6 +6,7 @@ public class resourceGatherer : MonoBehaviour
 {
     public GameObject coin;
     public Transform resourcePosition;
+    public bool preventsMultiplePickups = false;
     Animator anim;
     private bool isCollected = false;
 
@@ -24,13 +25,23 @@ public class resourceGatherer : MonoBehaviour
         }
     }
 
-    void Update()
+    void DestroyResource()
     {
-        if ((anim.GetCurrentAnimatorStateInfo(0).IsName("resourceBreak")) && anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.8f)
-        {
-            Destroy(gameObject);
-            Debug.Log("gameObject destroyed");
-        }
+        Destroy(gameObject);
     }
+
+
+    /*void Update()
+    {
+
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName("resourceBreak")) 
+        {
+            Debug.Log("cannot pickup items");
+        }
+        else
+        {
+            Debug.Log("can pickup items");
+        }
+    }*/
 }
 
