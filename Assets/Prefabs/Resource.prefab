@@ -218,6 +218,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   coin: {fileID: 332069976392545331, guid: 80e38e4d81cc40744930076a8dfeecb4, type: 3}
   resourcePosition: {fileID: 459771845337858470}
+  preventsMultiplePickups: 0
 --- !u!1 &8648420835618553749
 GameObject:
   m_ObjectHideFlags: 0
@@ -243,7 +244,7 @@ Transform:
   m_GameObject: {fileID: 8648420835618553749}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 7.3274136, y: 4.4138584, z: 0}
-  m_LocalScale: {x: 0.29440334, y: 0.31399378, z: 1}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_Children:
   - {fileID: 459771845337858470}
   - {fileID: 8131555787536991510}

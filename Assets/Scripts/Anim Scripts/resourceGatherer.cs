@@ -8,7 +8,6 @@ public class resourceGatherer : MonoBehaviour
     public Transform resourcePosition;
     public bool preventsMultiplePickups = false;
     Animator anim;
-    private bool isCollected = false;
 
     void Start()
     {
@@ -17,7 +16,7 @@ public class resourceGatherer : MonoBehaviour
 
     void OnCollisionStay2D(Collision2D col)
     {
-        if ((col.gameObject.tag == "Player" && GameObject.Find("Player").GetComponent<playerController>().playCoinAnim == true) && (isCollected == false)) //if within collider and player has pressed Pickup button
+        if ((col.gameObject.tag == "Player" && GameObject.Find("Player").GetComponent<playerController>().playCoinAnim == true)) //if within collider and player has pressed Pickup button
         {
             anim.SetTrigger("hasCollected2"); //resource animation
             Instantiate(coin, resourcePosition.position, resourcePosition.rotation); //instantiate coin anim
